@@ -1,7 +1,8 @@
 import { join } from 'path'
 import express from 'express'
-import { makeExecutableSchema } from 'graphql-tools'
+import { makeExecutableSchema, addResolveFunctionsToSchema } from 'graphql-tools'
 import { configureEndpoint, getLiteralTypes, getResolvers } from '../src'
+import DateTime from '../src/types/date-time'
 
 const app = express()
 
@@ -58,6 +59,10 @@ const resolvers = getResolvers({
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers
+})
+
+addResolveFunctionsToSchema(schema, {
+  DateTime
 })
 
 const endpoint = configureEndpoint({
