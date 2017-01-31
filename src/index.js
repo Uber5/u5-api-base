@@ -6,6 +6,7 @@ import { ClientRequest, ServerResponse } from 'http'
 import type { Middleware } from 'express'
 
 import typesFromDir from './types-from-dir'
+import resolversFromDir from './resolvers-from-dir'
 
 export const configureEndpoint = ({ schema }: { schema: GraphQLSchema }) => {
 
@@ -33,6 +34,8 @@ export const getLiteralTypes = ({
   return types.slice(0).concat(typesFromDir(fromDir))
 }
 
-export const getResolvers = () => {
-  return []
-}
+export const getResolvers = ({
+  fromDir
+}: {
+  fromDir: string
+}) => resolversFromDir({ fromDir })

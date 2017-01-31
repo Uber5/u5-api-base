@@ -51,10 +51,8 @@ const typeDefs = getLiteralTypes({
   types: [ schemaDefinition, queries, mutations ]
 })
 
-console.log('typeDefs', typeDefs)
-
 const resolvers = getResolvers({
-  fromDir: './resolvers'
+  fromDir: join(__dirname, './resolvers')
 })
 
 const schema = makeExecutableSchema({

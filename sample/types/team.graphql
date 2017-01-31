@@ -3,4 +3,5 @@ type Team {
   id: ID!
   name: String!
   memberships: [TeamMembership]
+  createdAt: DateTime
 }

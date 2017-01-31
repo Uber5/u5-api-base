@@ -4,4 +4,5 @@ type Player {
   level: Level
   firstName: String!
   teamMemberships: [TeamMembership]
+  teams: [Team]
 }
