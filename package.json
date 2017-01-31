@@ -1,0 +1,25 @@
+{
+  "name": "u5-api-base",
+  "version": "0.0.1",
+  "description": "Base implementation (framework?) to enable building an API using GraphQL and MongoDB",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Chris927/u5-api-base.git"
+  },
+  "keywords": [
+    "api",
+    "graphql",
+    "mongodb",
+    "uber5"
+  ],
+  "author": "Chris Oloff <chris@uber5.com> (http://about.uber5.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chris927/u5-api-base/issues"
+  },
+  "homepage": "https://github.com/Chris927/u5-api-base#readme"
+}
