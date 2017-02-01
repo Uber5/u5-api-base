@@ -18,7 +18,6 @@ export const ensureIndexes = () => {
 
 const collection = name => mongo
 .then(db => db.collection(name))
-// .then(c => { console.log('collection for ' + name, c); return c })
 
 // maps collection names to type names, to be used for database interaction
 export const db = {

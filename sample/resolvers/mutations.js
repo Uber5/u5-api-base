@@ -1,17 +1,18 @@
 import { db } from '../db'
 import { externalizeIdOf, internalize } from '../../src/mongo'
+import log from '../../src/log'
 
 export default {
 
   createTeam(_, { input }, context) {
-    console.log('should create team', input)
+    log('should create team', input)
     return db.Teams()
     .then(teams => teams.insert(input))
     .then(result => externalizeIdOf(input))
   },
 
   createPlayer(_, { input, addToTeamId }, context) {
-    console.log('should create player', input, addToTeamId)
+    log('should create player', input, addToTeamId)
   },
 
   updateTeam(_, { input, id }, context) {
@@ -21,7 +22,8 @@ export default {
       { $set: input },
       { returnOriginal: false }
     ))
-    .then(res => console.log('result', res))
+    .then(res => res.value)
+    .then(externalizeIdOf)
   },
 
   updatePlayer(_, { input, id }, context) {
