@@ -16,3 +16,8 @@ export const getCollectionNameFromFileName = (name: string) => {
       .replace(/-([a-z])/g, g => g[1].toUpperCase()) // make it camelCase
   )
 }
+
+export const failIfNotFound = (message: string) => (doc: Object) => {
+  if (doc) return doc;
+  throw new Error('Not found: ' + message)
+}

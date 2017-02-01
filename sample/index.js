@@ -3,6 +3,7 @@ import express from 'express'
 import { makeExecutableSchema, addResolveFunctionsToSchema } from 'graphql-tools'
 import { configureEndpoint, getLiteralTypes, getResolvers } from '../src'
 import DateTime from '../src/types/date-time'
+import { mongo, ensureIndexes } from './db'
 
 const app = express()
 
@@ -70,7 +71,18 @@ const endpoint = configureEndpoint({
 })
 app.use('/api', endpoint);
 
+// listen as a server
 const port = process.env.PORT || 4000
 app.listen(port, () => {
   console.log('listening on port', port)
 });
+
+// log the database name (or bail, if we cannot connect)
+mongo
+.then(db => console.log('connected to', db.databaseName))
+.catch(e => { console.log(e); process.exit(1) })
+
+// ensure mongodb indexes (or bail)
+ensureIndexes()
+.then(() => console.log('indexes created / updated'))
+.catch(e => { console.log(e); process.exit(1) })
