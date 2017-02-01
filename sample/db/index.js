@@ -7,7 +7,16 @@ const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/u5-api-base-sampl
 export const mongo = MongoClient.connect(mongoUrl)
 
 const indexes = [
-  { collection: 'teams', index: { name: 1 }, options: { unique: true } },
+  {
+    collection: 'teams',
+    index: { name: 1 },
+    options: { unique: true }
+  },
+  {
+    collection: 'teamMemberships',
+    index: { teamId: 1, playerId: 1 },
+    options: { unique: true }
+  },
 ]
 
 export const ensureIndexes = () => {

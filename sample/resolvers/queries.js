@@ -25,7 +25,10 @@ export default {
   },
 
   players(_, { teamId }, context) {
-
+    log('fetching all players')
+    return db.Players()
+    .then(p => p.find().toArray())
+    .then(a => a.map(externalizeIdOf))
   }
 
 }
