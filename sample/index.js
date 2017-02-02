@@ -27,7 +27,6 @@ const mutations = `
     addPlayerToTeam(teamId: ID!, playerId: ID!): Player
     removePlayerFromTeam(teamId: ID!, playerId: ID!): Player
     archivePlayer(id: ID!): Player
-    archiveTeam(id: ID!): Player
   }
 `
 

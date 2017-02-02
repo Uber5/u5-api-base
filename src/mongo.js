@@ -11,4 +11,9 @@ const renameKeys = R.curry((keysMap, obj) => {
 
 export const externalizeIdOf = renameKeys({ _id: 'id' })
 
-export const internalize = id => new ObjectId(id)
+export const internalize = id => {
+  if (!id) {
+    throw new Error(`no id given`)
+  }
+  return new ObjectId(id)
+}

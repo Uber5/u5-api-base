@@ -21,13 +21,17 @@ export default {
   },
 
   player(_, { id }, context) {
-
+    log('fetching player', id)
+    return db.Players()
+    .then(collection => collection.findOne({ _id: internalize(id) }))
+    .then(failIfNotFound(`Player with id ${ id }`))
+    .then(externalizeIdOf)
   },
 
   players(_, { teamId }, context) {
     log('fetching all players')
     return db.Players()
-    .then(p => p.find().toArray())
+    .then(p => p.find({ archived: { $ne: true } }).toArray())
     .then(a => a.map(externalizeIdOf))
   }
 

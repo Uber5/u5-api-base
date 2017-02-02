@@ -2,13 +2,31 @@ import { db } from '../db'
 import { externalizeIdOf } from '../../src/mongo'
 import log from '../../src/log'
 
+const teamMembershipsOf = player => {
+  return db.TeamMemberships()
+  .then(collection => collection.find({
+    playerId: player.id,
+    archived: { $ne: true }
+  }))
+  .then(result => result.toArray())
+  .then(a => a.map(externalizeIdOf))
+}
+
 export default {
+  archived(player) {
+    return player.archived || false
+  },
   teamMemberships(player, _, context) {
     log('teamMemberships', player)
-    return db.TeamMemberships()
-    .then(mships => mships.find({ playerId: player.id }))
+    return teamMembershipsOf(player)
+  },
+  teams(player, _, context) {
+    log('teams', player)
+    return teamMembershipsOf(player)
+    .then(mships => mships.map(mship => mship.teamId))
+    .then(teamIds => Promise.all([ teamIds, db.Teams() ]))
+    .then(([ teamIds, teamsCollection ]) => teamsCollection.find({ _id: { $in: teamIds }}))
     .then(result => result.toArray())
-    .then(a => { log('a', a); return a })
-    .then(a => a.map(externalizeIdOf))
+    .then(teams => teams.map(externalizeIdOf))
   }
 }

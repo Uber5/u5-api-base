@@ -47,7 +47,7 @@ export default {
       teamId: internalize(teamId),
       playerId: internalize(playerId)
     }
-    
+
     log('addPlayerToTeam, doc', doc)
     return db.TeamMemberships()
     .then(memberships => memberships.insert(doc))
@@ -66,10 +66,15 @@ export default {
   },
 
   archivePlayer(_, { id }, context) {
-
-  },
-
-  archiveTeam(_, { id }, context) {
-
+    log('archivePlayer', id)
+    return db.Players()
+    .then(collection => collection.findOneAndUpdate(
+      { _id: internalize(id) },
+      { $set: { archived: true } },
+      { returnOriginal: false }
+    ))
+    .then(res => res.value)
+    .then(externalizeIdOf)
   }
+
 }

@@ -3,6 +3,7 @@ type Player {
   id: ID!
   level: Level
   firstName: String!
+  archived: Boolean
   teamMemberships: [TeamMembership]
   teams: [Team]
 }
