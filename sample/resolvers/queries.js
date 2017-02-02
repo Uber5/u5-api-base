@@ -16,8 +16,8 @@ export default {
   teams() {
     log('fetching all teams')
     return db.Teams()
-    .then(teams => teams.find().toArray())
-    .then(a => a.map(t => externalizeIdOf(t)))
+    .then(collection => collection.find().toArray())
+    .then(a => a.map(externalizeIdOf))
   },
 
   player(_, { id }, context) {

@@ -8,7 +8,7 @@ export default {
     log('create team', input)
     // TODO: validate input here (compare https://gitlab.uber5.com/misav-dev/quotes-api/tree/master/src/validate)
     return db.Teams()
-    .then(teams => teams.insert(input))
+    .then(collection => collection.insert(input))
     .then(result => externalizeIdOf(input))
   },
 
@@ -50,7 +50,7 @@ export default {
 
     log('addPlayerToTeam, doc', doc)
     return db.TeamMemberships()
-    .then(memberships => memberships.insert(doc))
+    .then(collection => collection.insert(doc))
     .then(result => externalizeIdOf(doc))
   },
 
