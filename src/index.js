@@ -60,8 +60,8 @@ module.exports.mongo = {
   internalize, externalizeIdOf
 }
 
-import { DateTime } from './types/date-time'
+import DateTime from './types/date-time'
 module.exports.types = { DateTime }
 
-import { failIfNotFound } from './utils'
-module.exports.utils = { failIfNotFound }
+import * as utils from './utils'
+module.exports.utils = utils
