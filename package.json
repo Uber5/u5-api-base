@@ -1,6 +1,6 @@
 {
   "name": "u5-api-base",
-  "version": "0.0.3-0",
+  "version": "0.0.3",
   "description": "Base implementation (framework?) to enable building an API using GraphQL and MongoDB",
   "main": "dist/index.js",
   "scripts": {
