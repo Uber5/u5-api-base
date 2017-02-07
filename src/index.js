@@ -54,3 +54,14 @@ export const getResolvers = ({
 }) => resolversFromDir({ fromDir })
 
 module.exports.log = log
+
+import { externalizeIdOf, internalize } from './mongo'
+module.exports.mongo = {
+  internalize, externalizeIdOf
+}
+
+import { DateTime } from './types/date-time'
+module.exports.types = { DateTime }
+
+import { failIfNotFound } from './utils'
+module.exports.utils = { failIfNotFound }
