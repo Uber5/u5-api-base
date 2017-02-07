@@ -52,3 +52,5 @@ export const getResolvers = ({
 }: {
   fromDir: string
 }) => resolversFromDir({ fromDir })
+
+module.exports.log = log
